@@ -1,0 +1,720 @@
+<html>
+<header>
+
+</header>
+<style>
+    body {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .force-strat {
+        justify-content: start !important;
+    }
+
+    .image-box {
+        height: 100%;
+        position: absolute;
+        width: 115%;
+
+        background: url("https://test2314a2.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20200604_172129911.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .intro {
+        color: #fff;
+        position: absolute;
+        height: 220px;
+        top: 40%;
+    }
+
+    img {}
+
+    .web-header {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 10px 8px 0px #ccc;
+    }
+
+    .web-header div {
+        padding: 12px 20px;
+        cursor: pointer;
+    }
+
+    .web-header div:nth-child(1) {
+        font-size: 2.0em;
+        font-weight: bold;
+    }
+
+    .naver-chart iframe {
+        width: 1200px;
+        height: 500px;
+    }
+
+    .web-header div:nth-child(2) {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-left: 50px;
+    }
+
+    .web-header div:nth-child(3) {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-left: 50px;
+    }
+
+    .page {
+        width: 90%;
+        margin: 0 auto;
+        height: 90%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .page .view {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+    }
+
+    .button-box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page-on {
+        display: flex !important;
+    }
+
+    .home {
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .header {
+        font-weight: bold;
+        font-size: 2.0em;
+    }
+
+    .button {
+        margin-top: 16px;
+        border-radius: 4px;
+        padding: 12px 20px;
+        box-shadow: none;
+        border: 0px;
+        cursor: pointer;
+    }
+
+    .button2 {
+        padding: 6px 20px;
+        font-size: 1.25em;
+        width: 200px;
+        height: 45px;
+        box-shadow: none;
+        border: 0px;
+        cursor: pointer;
+    }
+
+    .filter-header {
+        font-size: 1.2em;
+        margin-top: 20px;
+        font-weight: bold;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .open {
+        display: none;
+        cursor: pointer;
+        float: right;
+    }
+
+    .close {
+        display: none;
+        cursor: pointer;
+        float: right;
+    }
+
+    .button-blue {
+        background: rgb(255, 0, 127);
+        color: #fff;
+        font-size: 1.2em;
+        font-weight: bold;
+        width: 100%;
+    }
+
+    .filter .container {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        border: 2px solid #ccc;
+        position: absolute;
+        z-index: 999;
+        background: #fff;
+        height: calc(100% - 70px);
+        min-height: 600px;
+        margin-top: 20px;
+    }
+
+    .filter .container .row {
+        height: 100%;
+        display: flex;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .filter .container .row:nth-last-child(1) {
+        border-bottom: 0px;
+    }
+
+
+    .filter .container .row .title {
+        width: 20%;
+        align-items: center;
+        display: flex;
+        border-right: 2px solid #ccc;
+        padding: 0px 8px;
+    }
+
+    .filter .container .row .content {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        padding: 16px;
+        justify-content: center;
+    }
+
+    .filter .container .row .content>div {
+        margin-bottom: 12px;
+    }
+
+    .filter .container .row .content>div input {
+        border-radius: 3px;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .filter .container .row .content>div input[type=number] {
+        width: 50px !important;
+    }
+
+    .filter .container .row .content>div:nth-last-child(1) {
+        margin-bottom: 0px;
+    }
+
+    .result {
+        position: relative;
+        height: 80%;
+        overflow-y: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        flex-direction: column;
+    }
+
+    .result-header {
+        border-bottom: 2px solid #ccc;
+        margin-bottom: 8px;
+        border-top: 2px solid #ccc;
+        padding: 8px 0px;
+        background: #cccccc91;
+        font-weight: bold;
+    }
+
+    .result .row {
+        display: flex;
+        width: 100%;
+        text-align: center;
+    }
+
+    .result .row>div {
+        width: 100%;
+        padding: 8px 0px;
+    }
+
+    .result .data {
+        width: 100%;
+    }
+
+    .result .data div div {
+        width: 100%;
+        padding: 8px 0px;
+    }
+
+    .result-total {
+        width: 2500px;
+    }
+</style>
+
+
+<body>
+    <div class="web-header">
+        <div onclick="move(1)">
+            주쇼
+        </div>
+        <div onclick="move(3)">
+            전체 목록
+        </div>
+        <div onclick="move(2)">
+            나의 주식 바구니
+        </div>
+    </div>
+    <div class="page page-on" index="1">
+        <div class="view force-strat">
+            <div class="image-box">
+            </div>
+            <div class="intro">
+                <div class="header">
+                    “주쇼” <br>
+                    주식을 쇼핑하다
+                </div>
+                <div>
+                    <button class="button button-blue" onclick="move(2)">
+                        시작하기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="page filter" index="2">
+        <div class="view">
+            <div class="filter-header">
+                필터
+                <span class="open page-on" onclick="filterOpen()">OPEN</span>
+                <span class="close" onclick="filterClose()">CLOSE</span>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="title">
+                        시가총액
+                    </div>
+                    <div class="content">
+                        <div>
+                            <input class="value" type="checkbox" name="s1">
+                            시가총액 <input class="value" type="number" id="s1">% 이상
+                        </div>
+                        <div>
+                            <input class="value" type="checkbox" name="s2">
+                            시가총액 <input class="value" type="number" id="s2">% 이하
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="title">
+                        안정성 지표
+                    </div>
+                    <div class="content">
+                        <div>
+                            <input class="value" type="checkbox" name="b1">
+                            부채비율 <input class="value" type="number" id="b1">% 이하
+                        </div>
+                        <div>
+                            <input class="value" type="checkbox" name="b2">
+                            유동비율 <input class="value" type="number" id="b2">% 이하
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="title">
+                        가격지표
+                    </div>
+                    <div class="content">
+                        <div>
+                            <input class="value" type="checkbox" name="l1"> 저 PER
+                        </div>
+                        <div>
+                            <input class="value" type="checkbox" name="l2"> 저 PBR (0.2이상)
+                        </div>
+                        <div>
+                            <input class="value" type="checkbox" name="l3"> 저 PCR
+                        </div>
+                        <div>
+                            <input class="value" type="checkbox" name="l4"> 저 PSR
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="title">
+                        수익성 지표
+                    </div>
+                    <div class="content">
+                        <div>
+                            <input class="value" type="checkbox" name="h1"> 고 ROE
+                        </div>
+                        <div>
+                            <input class="value" type="checkbox" name="h2"> 고 ROA
+                        </div>
+                        <div>
+                            <input class="value" type="checkbox" name="h3"> 고 ROIC
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="button-box">
+                        <button class="button2 button-blue" onclick="init()">적용하기</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="naver-chart">
+                <iframe height="500" width="1200" src="https://ssltvc.forexprostools.com/?pair_ID=8849&height=500&width=1200&interval=300&plotStyle=area&domain_ID=18&lang_ID=18&timezone_ID=26"></iframe>
+            </div>
+
+            <div class="result">
+                <div class="row result-header">
+                    <div>종합순위</div>
+                    <div>종목코드</div>
+                    <div>회사명</div>
+                    <div>주가</div>
+                    <div>시가총액</div>
+                </div>
+                <div class="data">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page filter" index="3">
+        <div class="view">
+            <div class="result result-total">
+                <div class="row result-header">                    
+                    <div>종목코드</div>
+                    <div>회사명</div>
+                    <div>주가</div>
+                    <div>시가총액</div>                    
+                    <div>업종</div>                      
+                    <div>위치</div> 
+                    <div>PER</div>  
+                    <div>PBR</div>  
+                    <div>PCR</div>  
+                    <div>PSR</div>  
+                    <div>ROE</div>  
+                    <div>ROA</div>  
+                    <div>ROIC</div>  
+                    <div>DE</div>  
+                    <div>CR</div>  
+                </div>
+                <div class="total-data data">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    
+<script>
+    // 필터 선택여부
+    const onFilter = {
+        s1: false,
+        s2: false,
+        b1: false,
+        b2: false,
+        l1: false,
+        l2: false,
+        l3: false,
+        l4: false,
+        h1: false,
+        h2: false,
+        h3: false,
+    };
+            
+    
+    // 전체 로딩 한번만 하게 로딩여부
+    let isTotalInit = true;
+
+    // 필터할때 사용할 값
+    const filter = {
+        s1: '',
+        s2: '',
+        b1: '',
+        b2: '',
+    }
+    
+    // 서버에서 받아온 Json string를 Object으로 변경
+    const data = JSON.parse("{{data}}".replace(/&quot;/gi, '"'));
+
+    // 시가총액 계산시 사용됨
+    const evarPrice = data.reduce((total, row) => total + Number(row.cap), 0) / data.length;    
+
+    // 메뉴 이동
+    function move(index) {            
+        Array.from(document.querySelectorAll('.page')).forEach(element => {
+            element.classList.remove('page-on');
+            const pageNumber = element.getAttribute('index');
+
+            if (pageNumber == index) {
+                element.classList.add('page-on');
+            }
+        });
+        
+        if (index === 3) {
+            totalInit();
+        }
+    }
+
+    // 필터 온
+    function filterOpen() {
+        document.querySelector('.container').classList.add('page-on');
+        document.querySelector('.open').classList.remove('page-on');
+        document.querySelector('.close').classList.add('page-on');
+    }
+
+    // 필터 닫기
+    function filterClose() {
+        document.querySelector('.container').classList.remove('page-on');
+        document.querySelector('.close').classList.remove('page-on');
+        document.querySelector('.open').classList.add('page-on');
+    }
+
+    //이벤트 등록
+    function addEvent() {
+        
+        // 체크박스 데이터가 변경되면 onFilter 값 업데이트
+        Array.from(document.querySelectorAll('.value[type=checkbox]')).forEach(element => {
+            element.addEventListener('change', function (event) {
+                if (element.checked === true) {
+                    onFilter[element.getAttribute('name')] = true;
+                } else {
+                    onFilter[element.getAttribute('name')] = false;
+                }
+            })
+        });
+    }
+
+    // 데이터 세팅
+    function init() {
+        filterClose();
+
+        let HTML = '';
+        let result = JSON.parse(JSON.stringify(data));
+
+        const filter = {};
+        const dataElement = document.querySelector('.data');
+
+        const s1Value = document.querySelector('#s1').value;
+        const s2Value = document.querySelector('#s2').value;
+        const b1Value = document.querySelector('#b1').value;
+        const b2Value = document.querySelector('#b2').value;
+
+        // 필터 여부 시총계산 (상)
+        if (onFilter.s1 === true && s1Value) {
+            result = result.filter(row => ((evarPrice * (Number(s1Value) / 100)) <= Number(row.cap)) && row.cap > 0);
+        }
+    
+        // 필터 여부 시총계산 (하)
+        if (onFilter.s2 === true && s2Value) {
+            result = result.filter(row => ((evarPrice * (Number(s2Value) / 100)) >= Number(row.cap)) && row.cap > 0);
+        }
+        // 필터 여부 부채비율
+        if (onFilter.b1 === true && b1Value) {
+            result = result.filter(row => b1Value >= row.de && row.de > 0);
+        }
+
+        // 필터 여부 유동비율
+        if (onFilter.b2 === true && b2Value) {
+            result = result.filter(row => b2Value >= row.cr && row.cr > 0);
+        }
+
+        // 여기에 해당하는 필터 하나라도 고르면 데이터 정렬 시작
+        if (onFilter.l1 || onFilter.l2 || onFilter.l3 || onFilter.l4 || onFilter.h1 || onFilter.h2 || onFilter.h3) {    
+            // 순위
+            const rankMap = {};
+            
+            // 순위에 들어갈 항목들 생성
+            for (const row of result) {
+                rankMap[row.id] = 0;
+            }
+
+            // 저 per
+            if (onFilter.l1 === true) {
+                result = result.filter(row => row.per > 0);
+                const sortResult = result.sort((first, second) => {
+                    return first.per < second.per ? -1 : first.per > second.per ? 1 : 0
+                });
+
+                for (const index in sortResult) {
+                    rankMap[sortResult[index].id] += Number(index);
+                }
+            }
+
+            // 저 pbr
+            if (onFilter.l2 === true) {
+                result = result.filter(row => row.pbr > 0);
+                const sortResult = result.filter(row => row.pbr >= 2.0).sort((first, second) => {
+                    return first.pbr < second.pbr ? -1 : first.pbr > second.pbr ? 1 : 0
+                });
+
+                for (const index in sortResult) {
+                    rankMap[sortResult[index].id] += Number(index);
+                }
+            }
+            
+            // 저 pcr 
+            if (onFilter.l3 === true) {
+                result = result.filter(row => row.pcr > 0);
+                const sortResult = result.filter(row => row.pcr > 0).sort((first, second) => {
+                    return first.pcr < second.pcr ? -1 : first.pcr > second.pcr ? 1 : 0
+                });
+
+                for (const index in sortResult) {
+                    rankMap[sortResult[index].id] += Number(index);
+                }
+            }
+
+            // 저 psr
+            if (onFilter.l4 === true) {
+                result = result.filter(row => row.psr > 0);
+                const sortResult = result.sort((first, second) => {
+                    return first.psr < second.psr ? -1 : first.psr > second.psr ? 1 : 0
+                });
+
+                for (const index in sortResult) {
+                    rankMap[sortResult[index].id] += Number(index);
+                }
+            }
+
+            // 고 roe
+            if (onFilter.h1 === true) {
+                result = result.filter(row => row.roe > 0);
+                const sortResult = result.sort((first, second) => {
+                    return first.roe < second.roe ? 1 : first.roe > second.roe ? -1 : 0
+                });
+
+                for (const index in sortResult) {
+                    rankMap[sortResult[index].id] += Number(index);
+                }
+            }
+
+            // 고 roa
+            if (onFilter.h2 === true) {  
+                result = result.filter(row => row.roa > 0);           
+                const sortResult = result.sort((first, second) => {
+                    return first.roa < second.roa ? 1 : first.roa > second.roa ? -1 : 0
+                });
+
+                for (const index in sortResult) {
+                    rankMap[sortResult[index].id] += Number(index);
+                }
+            }
+
+            // 고 roic
+            if (onFilter.h3 === true) {
+                result = result.filter(row => row.roic > 0);
+                const sortResult = result.sort((first, second) => {
+                    return first.roic < second.roic ? 1 : first.roic > second.roic ? -1 : 0
+                });
+
+                for (const index in sortResult) {
+                    rankMap[sortResult[index].id] += Number(index);
+                }
+            }
+
+            // 랭크계산
+            Object.keys(rankMap).forEach(key => {
+                const index = result.findIndex(row => row.id === key);
+                if (index === -1) {
+                    return;
+                }
+                result[index].rank = rankMap[key];
+            });
+
+            // 랭크에 따라 정렬
+            result = result.sort((first, second) => {
+                return first.rank > second.rank ? 1 : first.rank < second.rank ? -1 : 0;
+            });
+        }
+
+        dataElement.innerHTML = '';
+        
+        // 데이터 새로 그리기
+        for (const index in result) {
+            HTML += `
+            <div class="row">
+                <div>${Number(index) + 1}</div>
+                <div>${result[index].id}</div>
+                <div>${result[index].name}</div>
+                <div>${numberWithCommas(result[index].price)}원</div>
+                <div>${numberWithCommas(result[index].cap)}원</div>
+            </div>
+           `;
+        }
+
+        dataElement.innerHTML = HTML;
+    }
+
+    // 전체 목록 데이터 로딩
+    function totalInit() {
+        if (isTotalInit === false) {
+            return;
+        }
+        
+        let HTML = '';
+
+        for (const row of data) {
+            HTML += `
+            <div class="row">
+                <div>${row.id}</div>                
+                <div>${row.name}</div>
+                <div>${numberWithCommas(row.price)}원</div>
+                <div>${numberWithCommas(row.cap)}원</div>
+                <div>${row.industry}</div>
+                <div>${row.location}</div>
+                <div>${numberWithCommas(row.per.toFixed(2))}</div>
+                <div>${numberWithCommas(row.pbr.toFixed(2))}</div>
+                <div>${numberWithCommas(row.pcr.toFixed(2))}</div>
+                <div>${numberWithCommas(row.psr.toFixed(2))}</div>
+                <div>${numberWithCommas(row.roe)}</div>
+                <div>${numberWithCommas(row.roa)}</div>
+                <div>${numberWithCommas(row.roic)}</div>
+                <div>${numberWithCommas(row.de)}</div>
+                <div>${numberWithCommas(row.cr)}</div>
+            </div>
+            `;
+        }
+
+        document.querySelector('.total-data').innerHTML = HTML;
+        
+        isTotalInit = false;
+    }
+
+    //숫자에 콤마 넣기
+    function numberWithCommas(x) {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    }
+
+
+    window.onload = function () {
+        addEvent();        
+        init();
+    }
+
+</script>
+
+
+</html>
